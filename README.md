@@ -108,14 +108,4 @@ Pro úspěšné absolvování předmětu je nutné mít nainstalované následuj
 | 16. | Chatovací aplikace I. | Návrh protokolu pro chat. Implementace klienta. |
 | 17. | Chatovací aplikace II. | Dokončení serveru, testování komunikace mezi studenty. |
 | 18. | Rezerva / Projekty | Práce na závěrečných projektech nebo test. |
-| 19. | Závěr a Zápočty | Prezentace, zápočty. |
-
-## **Podmínky zápočtu**
-
-1. **Účast na cvičeních** (povolený počet absencí dle školního řádu).  
-2. **Průběžné úkoly** z jednotlivých bloků (Docker, Android, Vlákna).  
-3. **Závěrečný projekt**:  
-   * Funkční síťová aplikace (Chat/Hra) NEBO komplexní Android aplikace.  
-   * Musí být odevzdáno na GitHubu s dokumentací.
-
-*Materiály jsou inspirovány reálnou praxí a navazují na předměty Informatika 1,2,3.*  
+| 19. | Závěr a Zápočty | Prezentace, zápočty. | 
