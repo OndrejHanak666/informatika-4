@@ -45,6 +45,8 @@ Zkontrolujte, že běží:
 docker ps
 ```
 
+* `-a`: Zobrazí všechny i neběžící kontejnery.
+
 ## **3. Networking: Propojení dvou kontejnerů**
 
 Toto je klíčový úkol. Chceme propojit databázi (**PostgreSQL**) s grafickým správcem (**pgAdmin**), aniž bychom museli cokoli instalovat do Windows/macOS.
@@ -114,3 +116,53 @@ Po dokončení práce po sobě ukliďte:
 docker rm -f db-server db-admin  
 docker network rm my-net
 ```
+
+## **Úkoly**
+
+---
+
+### 1. Úkol: Úklid
+Začátečníci často spouští kontejnery a zapomínají na ně. Ty pak běží na pozadí nebo zabírají místo na disku.
+* **Zadání:**
+    1.  Spusťte experimentálně 3 kontejnery `hello-world`.
+    2.  Spusťte příkaz, který vypíše **všechny** kontejnery (nejen ty běžící, ale i ty vypnuté/ukončené).
+    3.  **Cíl:** Smažte všechny tyto zastavené kontejnery.
+    4.  *Tip:* Můžete to dělat po jednom pomocí ID, nebo najít na internetu příkaz ("docker prune"), který smaže všechny zastavené najednou.
+
+---
+
+### 2. Úkol: Port Mapping
+V materiálech jsme mapovali port 8080 na pgAdmin. Zkusme si to s jinou službou.
+* **Zadání:**
+    1.  Stáhněte a spusťte webový server **Nginx** (`nginx:alpine`) na pozadí (`-d`).
+    2.  Nastavte port forwarding tak, aby byl server dostupný na vašem počítači na portu **9999** (uvnitř kontejneru běží Nginx standardně na portu 80).
+    3.  **Ověření:** Otevřete prohlížeč na `http://localhost:9999`. Měli byste vidět "Welcome to nginx!".
+  
+---
+
+### 3. Úkol: Docker Exec
+Často potřebujete nahlédnout do kontejneru, který už běží (např. databáze), aniž byste ho vypínali. K tomu slouží příkaz `exec`.
+* **Zadání:**
+    1.  Mějte spuštěný Nginx z předchozího úkolu.
+    2.  Použijte příkaz `docker exec` s přepínači `-it`, abyste se dostali do příkazové řádky (`/bin/sh`) tohoto **běžícího** kontejneru.
+    3.  Uvnitř vytvořte soubor: `echo "Byl jsem tu" > /usr/share/nginx/html/tajne.html`.
+    4.  Odejděte z kontejneru (`exit`).
+    5.  **Ověření:** V prohlížeči na PC zadejte `http://localhost:9999/tajne.html`. Pokud se soubor zobrazí, úspěšně jste modifikovali běžící systém.
+
+---
+
+### 4. Úkol: DNS & Networks
+*Tento problém nachytá 90 % začátečníků. Odpověď musíte najít v dokumentaci nebo na fórech.*
+
+V lekci jsme si ukázali, že když vytvoříte vlastní síť (`docker network create`), kontejnery se vidí podle jména. Co se ale stane, když síť nevytvoříte?
+
+* **Zadání:**
+    1.  Spusťte dva kontejnery Alpine **bez definování sítě** (takže spadnou do výchozí "bridge" sítě):
+        * `docker run -dit --name alpine1 alpine`
+        * `docker run -dit --name alpine2 alpine`
+    2.  Vstupte do `alpine1` a zkuste pingnout ten druhý: `ping alpine2`.
+    3.  **Problém:** Uvidíte `bad address 'alpine2'`. Ping na jméno nefunguje!
+    4.  **Úkol:**
+        * Zjistěte (pomocí příkazu `docker inspect` z terminálu vašeho PC), jakou **IP adresu** má `alpine2`.
+        * Zkuste z `alpine1` pingnout přímo tuto IP adresu. (To by mělo fungovat).
+    5.  **Otázka k vyřešení:** Proč v defaultní síti nefungují jména (DNS), zatímco ve vlastní síti ano? Co musíte udělat, abyste mohli používat jména, aniž byste museli ručně hledat IP adresy?

@@ -48,8 +48,48 @@ Soubor `simple_cpu.py` obsahuje smyčku `while`, která:
 2. **Dekóduje** (Decode) o jaké číslo jde (např. vidí `1`, ví že je to `LOAD_A`).  
 3. **Vykoná** (Execute) příslušnou Python funkci.
 
-### **Úkol**
+## **Úkoly**
 
+### 0. Úkol: Jedoduchá úprava ROM
 1. Stáhněte si soubor [`simple_cpu.py`](./simple_cpu.py).  
 2. Spusťte ho v terminálu: python `simple_cpu.py`.  
 3. Podívejte se do kódu a zkuste změnit "program" (pole `rom`) tak, aby procesor spočítal a vypsal výsledek `50 + 50`.
+
+### 1. Úkol: Instrukce ODČÍTÁNÍ (SUB)
+Váš procesor zatím umí jen sčítat. To je pro reálné použití málo.
+* **Zadání:** Přidejte do třídy `SimpleEmulator` podporu pro instrukci `SUB` pod kódem `0x05`.
+* **Chování:** Instrukce odečte hodnotu registru B od registru A (`A = A - B`) a výsledek uloží do A.
+* **Test:** Upravte pole `program_rom` tak, aby procesor spočítal příklad `50 - 20` a výsledek (30) vypsal na displej.
+
+### 2. Úkol: Instrukce PROHOZENÍ (SWAP)
+V assembleru často potřebujeme prohodit data mezi registry, aniž bychom je ukládali do paměti.
+* **Zadání:** Implementujte instrukci `SWAP` pod kódem `0x06`.
+* **Chování:** Prohodí hodnoty v registrech A a B. (Pokud je v A=10 a B=20, po provedení bude A=20 a B=10).
+* **Test:**
+    1.  Načtěte do A hodnotu 1.
+    2.  Načtěte do B hodnotu 2.
+    3.  Zavolejte `SWAP`.
+    4.  Zavolejte `PRINT` (Musí vypsat 2, nikoliv 1).
+
+### 3. Úkol: Vlastní Bootloader (Vizuální úprava)
+Emulátory starých konzolí mají často "Bootovací sekvenci" (logo Nintendo, PlayStation atd.), než se spustí hra.
+* **Zadání:** Upravte metodu `run` v Pythonu. Předtím, než začne `while` cyklus vykonávat instrukce, simulujte start systému.
+* **Požadavky:**
+    * Vypište do terminálu vaše vlastní ASCII Art logo (např. jméno vašeho CPU).
+    * Přidejte umělé zpoždění (`time.sleep`) a vypisujte "Načítám paměť... OK".
+
+---
+
+### 4. Úkol: ROM Hacker (Algoritmická úloha)
+*Tento úkol vyžaduje, abyste již měli hotové úkoly 1 a 2.*
+
+Představte si, že paměť ROM je drahá a vy do ní nemůžete ukládat nová čísla pomocí `LOAD`. Máte k dispozici pouze hodnoty, které už jsou v registrech.
+
+* **Cíl:** Napište program (posloupnost hex kódů v `program_rom`), který provede operaci: **Výsledek = (A + B) - A**.
+* **Pravidla:**
+    1.  Na začátku programu načtěte do **A = 10** a do **B = 5**.
+    2.  Od této chvíle **NESMÍTE** použít instrukce `LOAD_A` (0x01) ani `LOAD_B` (0x02).
+    3.  Musíte využít pouze matematiku (`ADD`, `SUB`) a přesuny (`SWAP`), abyste v registru A získali původní hodnotu B (tedy 5).
+    4.  Výsledek vypište.
+
+*(Nápověda: Pokud sečtete A+B, ztratíte původní hodnotu A. Jak ji tam dostat zpátky, když ji nemůžete znovu načíst? Budete muset chytře prohazovat registry.)*

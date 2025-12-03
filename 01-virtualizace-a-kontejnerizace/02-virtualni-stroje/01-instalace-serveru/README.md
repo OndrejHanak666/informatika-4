@@ -119,4 +119,50 @@ ip a
 
 Hledejte řádek začínající `inet 10.0.2.15...` (nebo podobně).
 
+## **Úkoly**
+
+---
+
+### 1. Úkol: Inspektor Hardwaru
+Při vytváření virtuálky jste nastavovali počet procesorů a velikost RAM. Pojďme ověřit, jestli systém uvnitř vidí to samé, co jste mu přidělili zvenku.
+* **Zadání:** Zjistěte, kolik jader CPU a kolik operační paměti má váš server k dispozici.
+* **Nápověda:**
+    * Pro procesor použijte příkaz `lscpu` (hledejte řádek `CPU(s):`).
+    * Pro paměť použijte příkaz `free -m` (zobrazí data v megabajtech).
+* **Otázka k zamyšlení:** Proč je hodnota v sloupci `total` u paměti o něco menší, než např. 2048 MB? 
+
+---
+
+### 2. Úkol: Hello Internet
+Virtuální stroj by měl mít přes NAT přístup k internetu. Ověříme to instalací malého nástroje.
+* **Zadání:** Aktualizujte seznam balíčků a nainstalujte program `neofetch`. Poté ho spusťte.
+* **Příkazy:**
+    1.  `sudo apt update` (tím si server stáhne seznam nejnovějších verzí softwaru).
+    2.  `sudo apt install neofetch` (samotná instalace).
+    3.  `neofetch`
+
+---
+
+### 3. Úkol: Průzkumník disku
+V instalátoru jste potvrdili smazání celého 25 GB disku. Kolik místa ale zabírá samotný čistý Linux?
+* **Zadání:** Zjistěte, kolik místa je na disku obsazeno a kolik zbývá volného.
+* **Příkaz:** `df -h` (disk free, přepínač `-h` znamená "human-readable" - tedy v GB místo v bajtech).
+* **Cíl:** Najděte řádek končící lomítkem `/` (to je váš hlavní disk/root) a podívejte se do sloupce `Used`.
+
+---
+
+### 4. Úkol: "Zámečník" (Reset hesla)
+*Tento úkol vyžaduje hledání na internetu.*
+
+Stát se to může každému – nainstalovali jste server, šli jste na oběd a po návratu jste zjistili, že jste zapomněli heslo pro uživatele `student`. A protože to je vaše jediná cesta dovnitř, jste nahraní. Nebo ne?
+
+Pokud máte fyzický přístup k počítači (v našem případě k oknu VirtualBoxu), můžete heslo resetovat i bez znalosti toho původního.
+
+* **Simulace:** Restartujte virtuální stroj (`sudo reboot`).
+* **Cíl:** Dostaňte se do systému a změňte heslo uživatele `student` na `noveheslo123`, **aniž byste se normálně přihlásili**.
+* **Klíčová slova pro hledání:** `ubuntu server reset password grub recovery mode` nebo `init=/bin/bash`.
+* **Upozornění:** Budete muset být rychlí při startu (držet `Shift` nebo `Esc` pro zobrazení menu GRUB) a editovat startovací parametry jádra.
+
+---
+
 **Co dál?** Nyní server běží, ale je ve VirtualBox okně. V další lekci ([02. Síťování](../02-sitovani-port-forwarding) si nastavíme síť tak, abychom se k němu mohli připojit pohodlně z našeho hostitelského počítače.

@@ -105,3 +105,68 @@ Aby Docker věděl, komu image patří, musíte dodržet jmennou konvenci:
    docker run -p 3000:3000 vas_login/moje-node-app:v1
    ```
    Docker si image stáhne z internetu a spustí ho. Funguje to kdekoli na světě.
+
+
+## **Úkoly**
+
+---
+
+### 1. Úkol: Statický obsah
+
+Nejjednodušší použití Dockeru je zabalení statické HTML stránky.
+
+  * **Zadání:**
+    1.  Vytvořte si na počítači složku `muj-web` a v ní soubor `index.html` s libovolným textem (např. "Toto je můj web v kontejneru").
+    2.  Vytvořte `Dockerfile`, který:
+          * Vychází z oficiálního obrazu `nginx:alpine`.
+          * Pomocí instrukce `COPY` nahraje váš `index.html` do složky `/usr/share/nginx/html/` uvnitř kontejneru.
+    3.  **Sestavení:** `docker build -t muj-web:v1 .`
+    4.  **Spuštění:** `docker run -d -p 8888:80 muj-web:v1`
+    5.  **Ověření:** Otevřete `http://localhost:8888`. Musíte vidět váš text, ne výchozí stránku Nginxu.
+
+---
+
+### 2. Úkol: ENV Variables
+
+Hardcodovat konfiguraci (hesla, barvy, texty) přímo do kódu je špatná praxe. Docker image by měl být univerzální a konfigurovatelný zvenčí.
+
+  * **Zadání:**
+    1.  Upravte Python aplikaci (`app.py` v adresáři `muj-flask`) z materiálů.
+    2.  Místo pevného textu "Ahoj!" ať aplikace vypisuje obsah proměnné prostředí `POZDRAV`. Pokud proměnná není nastavena, použije defaultní hodnotu.
+          * *Nápověda:* Použijte `os.getenv("POZDRAV", "Výchozí ahoj")`.
+    3.  Přebudujte image (`docker build -t muj-flask:env .`).
+    4.  **Test:** Spusťte kontejner s přepínačem `-e`:
+        `docker run -p 5000:5000 -e POZDRAV="Nazdar světe" muj-flask:env`
+    5.  V prohlížeči by se měl změnit text, aniž byste měnili kód image.
+
+---
+
+### 3. Úkol: Slim vs. Full
+
+Velikost image je důležitá. Menší image se rychleji stahuje a zabírá méně místa.
+
+  * **Zadání:**
+    1.  Podívejte se, jak velký je váš image `muj-flask:env` (příkaz `docker images`).
+    2.  Upravte `Dockerfile`: Změňte `FROM python:3.9` (nebo slim) na plnou verzi `python:3.9` (pokud jste měli slim, dejte full, a naopak, abyste viděli rozdíl).
+    3.  Sestavte jako `muj-flask:velky`.
+    4.  **Porovnání:** O kolik MB se liší? (Často je to rozdíl i 800 MB vs 100 MB).
+
+---
+
+### 4. Úkol: Alpine
+
+*Tento úkol není v materiálech. Musíte pochopit, jak funguje Linuxový balíčkovací systém uvnitř Alpine.*
+
+V materiálech používáme pohodlný image `python:3.9-slim`, kde už je Python nainstalovaný. Co když ale potřebujete začít od píky?
+
+  * **Zadání:**
+    1.  Vytvořte Dockerfile pro vaši Flask aplikaci, ale jako základ použijte **čistý systém**:
+        ```dockerfile
+        FROM alpine:latest
+        ```
+    2.  Když zkusíte tento image sestavit a spustit, selže to (`python: not found`), protože Alpine v základu Python neobsahuje.
+    3.  **Úkol:**
+          * Přidejte do Dockerfile instrukci `RUN`, která pomocí balíčkovacího manažera `apk` nainstaluje `python3` a `py3-pip`.
+          * *Pozor:* Alpine používá `apk`, ne `apt`!
+          * Musíte také vytvořit virtuální prostředí (venv) nebo povolit instalaci balíčků globálně (v nejnovějších verzích Pythonu na Alpine je to nutné obejít přes `--break-system-packages` nebo konfiguraci).
+    4.  **Cíl:** Funkční Flask aplikace běžící na image, který jste si sestavili sami.
