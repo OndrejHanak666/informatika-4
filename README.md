@@ -57,21 +57,18 @@ Materiály jsou rozděleny do tématických bloků. Každá složka obsahuje teo
     * Práce s VirtualBoxem (instalace Linux serveru).  
     * Úvod do Dockeru (Image, Container, Dockerfile, Compose).  
     * Vývoj v kontejnerech pomocí VS Code (Dev Containers).
-
-* [**02. Mobilní vývoj (Android)**](./02-mobilni-vyvoj)
-    * Vývoj v Android Studio (Kotlin/Java).  
-    * Tvorba uživatelského rozhraní (XML Layouts).  
-    * Logika aplikace a životní cyklus aktivit.
-
-* [**03. Vlákna a Paralelní programování**](./03-vlakna-a-synchronizace)
+* [**02. Vlákna a Paralelní programování**](./02-vlakna-a-synchronizace)
     * Rozdíl mezi procesem a vláknem.  
     * Problémy sdílené paměti (Race Conditions).  
     * Synchronizace pomocí Mutexů a semaforů.
-
-* [**04. Síťová komunikace**](./04-sitova-komunikace)
+* [**03. Síťová komunikace**](./03-sitova-komunikace)
     * Úvod do TCP/IP a soketů.  
     * Implementace modelu Klient-Server.  
     * Tvorba vícevláknového chatovacího serveru.
+* [**04. Mobilní vývoj (Android)**](./04-mobilni-vyvoj)
+    * Vývoj v Android Studio (Kotlin/Java).  
+    * Tvorba uživatelského rozhraní (XML Layouts).  
+    * Logika aplikace a životní cyklus aktivit.
 
 ## **Požadovaný software**
 
