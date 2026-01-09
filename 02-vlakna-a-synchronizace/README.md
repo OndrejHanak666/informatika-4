@@ -88,13 +88,13 @@ Jak obsloužit 10 000 spojení, když nemůžeme mít 10 000 vláken (došla by 
 ### **1.6 Studijní materiály (detaily a ukázky)**
 
 *   **C++:** 
-    *   [Vlákna a Mutexy](../03-pokrocile-cpp/18-vlakna-a-paralelni-programovani/)
-    *   [Sdílená paměť a IPC](../03-pokrocile-cpp/19-sdilena-pamet/)
-    *   [Asynchronní C++ (Async/Future/Korutiny)](../03-pokrocile-cpp/21-asynchronni-programovani/)
+    *   [Vlákna a Mutexy](https://github.com/TomasRacil/informatika-2/tree/master/03-pokrocile-cpp/18-vlakna-a-paralelni-programovani/)
+    *   [Sdílená paměť a IPC](https://github.com/TomasRacil/informatika-2/tree/master/03-pokrocile-cpp/19-sdilena-pamet/)
+    *   [Asynchronní C++ (Async/Future/Korutiny)](https://github.com/TomasRacil/informatika-2/tree/master/03-pokrocile-cpp/21-asynchronni-programovani/)
 *   **Python:**
-    *   [Threading a GIL](../05-pokrocily-python/16-vlakna/)
-    *   [Multiprocessing](../05-pokrocily-python/17-multiprocessing/)
-    *   [AsyncIO Základy](../05-pokrocily-python/20-uvod-asyncio/)
+    *   [Threading a GIL](https://github.com/TomasRacil/informatika-2/tree/master/05-pokrocily-python/16-vlakna/)
+    *   [Multiprocessing](https://github.com/TomasRacil/informatika-2/tree/master/05-pokrocily-python/17-multiprocessing/)
+    *   [AsyncIO Základy](https://github.com/TomasRacil/informatika-2/tree/master/05-pokrocily-python/20-uvod-asyncio/)
 
 ## **2. Praktický Projekt: Chatovací Server**
 

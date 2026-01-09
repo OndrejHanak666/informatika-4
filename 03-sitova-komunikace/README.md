@@ -81,10 +81,10 @@ Jak napsat server, který obslouží 10 000 klientů současně?
 ### **1.5 Studijní materiály (detaily a ukázky)**
 
 *   **C++ (Nízkoúrovňové POSIX):**
-    *   [Lekce 20: Síťová komunikace (Berkeley Sockets)](../03-pokrocile-cpp/20-sitova-komunikace/)
+    *   [Lekce 20: Síťová komunikace (Berkeley Sockets)](https://github.com/TomasRacil/informatika-2/tree/master/03-pokrocile-cpp/20-sitova-komunikace/)
 *   **Python (Vysokoúrovňové a Async):**
-    *   [Lekce 19: Klasické sockety](../05-pokrocily-python/19-klasicke-sockety/)
-    *   [Lekce 21: Síťová komunikace AsyncIO](../05-pokrocily-python/21-sitova-komunikace-asyncio/)
+    *   [Lekce 19: Klasické sockety](https://github.com/TomasRacil/informatika-2/tree/master/05-pokrocily-python/19-klasicke-sockety/)
+    *   [Lekce 21: Síťová komunikace AsyncIO](https://github.com/TomasRacil/informatika-2/tree/master/05-pokrocily-python/21-sitova-komunikace-asyncio/)
 
 ## **2. Praktický Projekt A: TCP Chat Server**
 
